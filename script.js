@@ -56,11 +56,11 @@ if (container) {
 
     /* ---------------- RENDERER ---------------- */
 
-    const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true
-    });
-
+   const renderer = new THREE.WebGLRenderer({
+    alpha: true, 
+    antialias: true,
+    precision: "mediump" // Better for mobile performance
+});
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
