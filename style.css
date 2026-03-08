@@ -74,7 +74,23 @@ h1.logo {
     margin: 0;
 }
 
+/* Mobile Specific Adjustments */
+@media (max-width: 768px) {
+    .hero-layout {
+        display: flex;
+        flex-direction: column;  /* Stacks everything vertically */
+        text-align: center;
+    }
 
+    #sneaker-container {
+        height: 300px;           /* Gives the 3D model a fixed height so it doesn't vanish */
+        order: -1;               /* Moves the sneaker to the TOP of the text on mobile */
+    }
+
+    .hero-text {
+        padding: 20px;
+    }
+}
 
 /* HERO */
 
