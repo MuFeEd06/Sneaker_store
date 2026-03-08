@@ -80,29 +80,24 @@ if (container) {
 
     let sneaker;
 
-    const loader = new THREE.GLTFLoader();
+const loader = new THREE.GLTFLoader();
 
-    loader.load(
+// --- ADD THIS LINE TO FIX THE ERROR ---
+loader.setMeshoptDecoder(MeshoptDecoder); 
+// --------------------------------------
 
-        "sneaker.glb",
-
-        function (gltf) {
-
-            sneaker = gltf.scene;
-
-            sneaker.scale.set(3, 3, 3);
-
-            scene.add(sneaker);
-
-        },
-
-        undefined,
-
-        function (error) {
-            console.error("Model loading error:", error);
-        }
-
-    );
+loader.load(
+    "sneaker.glb",
+    function (gltf) {
+        sneaker = gltf.scene;
+        sneaker.scale.set(3, 3, 3);
+        scene.add(sneaker);
+    },
+    undefined,
+    function (error) {
+        console.error("Model loading error:", error);
+    }
+);
 
     /* ---------------- CAMERA POSITION ---------------- */
 
