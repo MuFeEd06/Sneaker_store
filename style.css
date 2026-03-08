@@ -11,6 +11,25 @@
 
 }
 
+/* 1. Prevent horizontal scrolling on the whole page */
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* This hides anything sticking out to the right */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Apply border-box to everything so padding doesn't add width */
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* 3. Ensure images and the 3D container don't push the width out */
+img, #sneaker-container, .brand-grid {
+    max-width: 100%;
+}
+
 /* GLOBAL */
 
 body{
@@ -478,12 +497,14 @@ grid-template-columns:repeat(3,1fr);
 
 }
 
-@media(max-width:600px){
-
-.brand-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
+@media (max-width: 768px) {
+    .brand-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 buttons per row on mobile */
+        gap: 8px;
+        width: 100%;
+        padding: 10px;
+    }
 }
 
 /*-------Product Details Code ---------*/
