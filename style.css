@@ -183,7 +183,7 @@ header {
 #sneaker-container canvas {
     width: 130% !important;
     height: 130% !important;
-    filter: drop-shadow(0 60px 100px rgba(0, 255, 156, 0.25));
+    filter: drop-shadow(0 60px 100px rgba(3, 199, 124, 0.25));
 }
 
 /* =================================================
@@ -374,6 +374,7 @@ footer button {
         order: -1; 
         margin: 0;
         width: 100%;
+        filter: drop-shadow(0 60px 100px rgba(0, 255, 157, 0.25));
     }
 
     .brand-grid {
