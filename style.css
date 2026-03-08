@@ -536,3 +536,55 @@ color:white;
 cursor:pointer;
 font-size:16px;
 }
+
+/* --- MOBILE SPECIFIC FIXES --- */
+@media (max-width: 768px) {
+
+    /* 1. Fix Header Alignment */
+    header {
+        display: flex;
+        flex-direction: column; /* Stacks text and logo nicely */
+        align-items: center;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .logo-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+
+    /* 2. Two Shoes Per Row */
+    #main-product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* This creates the 2-column layout */
+        gap: 10px;                             /* Space between cards */
+        padding: 10px;
+    }
+
+    /* Adjust Card size for 2-column layout */
+    .card {
+        width: 100%; 
+        padding: 5px;
+    }
+
+    .card img {
+        height: 120px; /* Smaller images to fit side-by-side */
+        object-fit: contain;
+    }
+
+    .card-info h3 {
+        font-size: 0.85rem; /* Smaller font so names don't wrap weirdly */
+    }
+}
