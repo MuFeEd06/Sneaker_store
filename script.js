@@ -84,7 +84,6 @@ const pointLight = new THREE.PointLight(0x7CFFB2, 1.5, 50);
 pointLight.position.set(-5, -5, -5);
 scene.add(pointLight);
 
-
     /* ---------------- LOAD MODEL ---------------- */
 
     let sneaker;
@@ -99,7 +98,15 @@ loader.load(
     "sneaker.glb",
     function (gltf) {
         sneaker = gltf.scene;
-        sneaker.scale.set(3, 3, 3);
+
+        // --- NEW SIZE LOGIC ---
+        if (window.innerWidth < 768) {
+            sneaker.scale.set(4.5, 4.5, 4.5); // Larger for Mobile
+        } else {
+            sneaker.scale.set(3, 3, 3); // Standard for Laptop
+        }
+        // -----------------------
+
         scene.add(sneaker);
     },
     undefined,
@@ -150,9 +157,9 @@ loader.load(
 
                 sneaker.rotation.y += 0.006;
 
-                if (camera.position.z <= 4) {
+                if (camera.position.z <= 5.5) {
 
-                    camera.position.z = 4;
+                    camera.position.z = 5.5;
                     introAnimation = false;
 
                 }

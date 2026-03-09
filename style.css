@@ -376,18 +376,24 @@ footer button {
     
     .hero-text h2 { font-size: 32px; }
     
-    #sneaker-container { 
-        height: 300px; 
-        order: -1; 
+    #sneaker-container {
+        height: 450px !important; /* Increased from 300px */
+        width: 100vw;
         margin: 0;
-        width: 100%;
-        filter: drop-shadow(0 60px 100px rgba(0, 255, 157, 0.25));
+        order: -1; 
     }
 
     .brand-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
     }
+    /* Ensure the canvas fills that new space */
+    #sneaker-container canvas {
+        width: 100% !important;
+        height: 100% !important;
+        transform: scale(1.2); /* Subtle CSS zoom for extra impact */
+    }
+
 
     /* THE PRODUCT GRID 2-COLUMN FIX */
     #main-product-grid {
