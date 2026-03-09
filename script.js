@@ -55,26 +55,35 @@ if (container) {
     );
 
     /* ---------------- RENDERER ---------------- */
-
-   const renderer = new THREE.WebGLRenderer({
+const renderer = new THREE.WebGLRenderer({
     alpha: true, 
     antialias: true,
-    precision: "mediump" // Better for mobile performance
+    precision: "highp", // Use high precision for better color depth
+    powerPreference: "high-performance"
 });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
 
-    container.appendChild(renderer.domElement);
-
+// Fix for washed out colors (Linear to sRGB)
+renderer.outputEncoding = THREE.sRGBEncoding; 
+renderer.setPixelRatio(window.devicePixelRatio); // Ensures sharpness on Retina/OLED screens
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
     /* ---------------- LIGHTING ---------------- */
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
-    scene.add(ambientLight);
+    /* ---------------- LIGHTING ---------------- */
+// Ambient light provides the base "original" color visibility
+const ambientLight = new THREE.AmbientLight(0xffffff, 2.0); // Increased intensity
+scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    directionalLight.position.set(5, 5, 5);
+// Directional light creates the "premium" 3D shadows and highlights
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.8);
+directionalLight.position.set(5, 10, 7); // Positioned higher for better top-down lighting
+scene.add(directionalLight);
 
-    scene.add(directionalLight);
+// Optional: Add a subtle blue/green tint from below to match your Claxxic brand glow
+const pointLight = new THREE.PointLight(0x7CFFB2, 1.5, 50);
+pointLight.position.set(-5, -5, -5);
+scene.add(pointLight);
+
 
     /* ---------------- LOAD MODEL ---------------- */
 

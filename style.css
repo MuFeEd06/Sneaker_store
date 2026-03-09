@@ -181,10 +181,17 @@ header {
 }
 
 #sneaker-container canvas {
-    width: 130% !important;
-    height: 130% !important;
-    filter: drop-shadow(0 60px 100px rgba(3, 199, 124, 0.25));
+    /* Ensure the canvas doesn't get blurry when scaled */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    
+    /* Keep your existing drop shadow but lower the blur slightly for clarity */
+    filter: drop-shadow(0 30px 50px rgba(124, 255, 178, 0.3));
+    
+    /* Remove any forced width/height that might distort the 3D model */
+    max-width: none !important; 
 }
+
 
 /* =================================================
    COLLECTIONS & BRAND GRID
