@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="https://wa.me/919999999999" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/918606466821" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
         <img src="logo/whatsapp.png" alt="WhatsApp">
     </a>
 
@@ -31,7 +31,7 @@
             <a href="#">Contact</a>
         </nav>
 
-        <div class="floating-cart">
+        <div class="floating-cart" onclick="window.location.href='cart.html'" style="cursor:pointer">
             🛒 <span id="cart-count">0</span>
         </div>
     </header>
@@ -56,30 +56,10 @@
         </div>
     </section>
 
-    <section class="collections-section fade-in">
-        <div class="brand-grid fade-in">
-            <button class="brand-btn">Nike</button>
-            <button class="brand-btn">Adidas</button>
-            <button class="brand-btn">Vans</button>
-            <button class="brand-btn">Timb</button>
-            <button class="brand-btn">Sketchers</button>
-            <button class="brand-btn">New Balance</button>
-            <button class="brand-btn">Converse</button>
-            <button class="brand-btn">Puma</button>
-            <button class="brand-btn">Reebok</button>
-            <button class="brand-btn">Asics</button>
-            <button class="brand-btn">On</button>
-            <button class="brand-btn">Lacoste</button>
-            <button class="brand-btn">Brooks</button>
-            <button class="brand-btn">Boots</button>
-            <button class="brand-btn">Brik</button>
-            <button class="brand-btn">Alo</button>
-            <button class="brand-btn">Onitsuka</button>
-            <button class="brand-btn">Louis Vuitton</button>
-            <button class="brand-btn">Under 1500</button>
-            <button class="brand-btn">Under 2500</button>
-            <button class="brand-btn">Under 3000</button>
-            <button class="brand-btn">ALL</button>
+    <section class="collections-section fade-in" id="collections">
+        <h2 class="section-title">Shop by Brand</h2>
+        <div class="brand-tiles-grid" id="brand-tiles-grid">
+            <!-- Tiles injected by script.js -->
         </div>
     </section>
 
@@ -109,6 +89,7 @@
         <p class="copyright">© 2026 Claxxic India</p>
     </footer>
 
+    <div class="toast" id="toast"></div>
     <script src="https://cdn.jsdelivr.net/npm/meshoptimizer@0.18.1/meshopt_decoder.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>

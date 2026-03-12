@@ -19,8 +19,8 @@
 
 <nav class="nav-links">
 <a href="index.html">Home</a>
-<a href="#">Collection</a>
-<a href="#">Cart (<span id="cart-count">0</span>)</a>
+<a href="index.html#collections">Collections</a>
+<a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
 </nav>
 
 </header>
@@ -44,6 +44,12 @@
 <div class="product-info">
 
 <h1 id="product-name"></h1>
+
+<div class="product-rating" id="product-rating">
+    <div class="stars" id="rating-stars"></div>
+    <span class="rating-score" id="rating-score"></span>
+    <span class="rating-count" id="rating-count"></span>
+</div>
 
 <p class="price" id="product-price"></p>
 
@@ -80,6 +86,16 @@ Add to Cart
 </section>
 
 
+<!-- YOU MAY ALSO LIKE -->
+<section class="similar-section" id="similar-section" style="display:none;">
+    <div class="similar-header">
+        <h2 class="similar-title">You May Also Like</h2>
+        <p class="similar-subtitle" id="similar-subtitle"></p>
+    </div>
+    <div class="product-grid similar-grid" id="similar-grid"></div>
+</section>
+
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 
 </body>

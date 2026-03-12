@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Cart — Claxxic India</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── CART PAGE SPECIFIC STYLES ── */
+        .cart-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 5% 100px;
+        }
+
+        .cart-page h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .cart-subtitle {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        /* ── EMPTY STATE ── */
+        .cart-empty {
+            text-align: center;
+            padding: 80px 20px;
+            display: none;
+        }
+
+        .cart-empty .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .cart-empty h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .cart-empty p {
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .cart-empty a {
+            display: inline-block;
+            padding: 12px 32px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .cart-empty a:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* ── CART LAYOUT ── */
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* ── CART ITEMS ── */
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 90px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            
+        }
+
+        .cart-item:hover {
+            border-color: var(--primary);
+            
+        }
+
+        .cart-item-img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.07);
+            padding: 6px;
+        }
+
+        .cart-item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cart-item-brand {
+            font-size: 0.72rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cart-item-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .cart-item-size {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .cart-item-size span {
+            background: rgba(255,255,255,0.07);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .cart-item-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 6px;
+        }
+
+        /* Quantity + Remove controls */
+        .cart-item-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.07);
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            
+            color: var(--primary);
+        }
+
+        .qty-value {
+            width: 36px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            padding: 4px 0;
+            color: white;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            text-decoration: underline;
+            padding: 0;
+        }
+
+        .remove-btn:hover { color: #e53e3e; }
+
+        /* ── ORDER SUMMARY ── */
+        .order-summary {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 90px;
+            
+        }
+
+        .order-summary h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .summary-row:last-of-type { border-bottom: none; }
+
+        .summary-row.total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            padding-top: 16px;
+            margin-top: 4px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .summary-row.total span:last-child { color: var(--primary); }
+
+        .whatsapp-checkout-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: #25D366;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: opacity 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .whatsapp-checkout-btn:hover {
+            opacity: 0.92;
+            transform: scale(1.02);
+        }
+
+        .whatsapp-checkout-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .continue-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: #888;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .continue-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ── TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--glass-bg);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .cart-item {
+                grid-template-columns: 70px 1fr auto;
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .cart-item-img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .cart-item-name { font-size: 0.88rem; }
+        }
+
+        @media (max-width: 480px) {
+            .cart-item {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .cart-item-controls {
+                flex-direction: row;
+                align-items: center;
+                grid-column: 1 / -1;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/918606466821" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="logo/whatsapp.png" alt="WhatsApp">
+    </a>
+
+    <header>
+        <div class="logo-container">
+            <h1 class="logo">Claxxic India</h1>
+            <img src="logo/logo.png" alt="Logo">
+        </div>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span><span></span><span></span>
+        </label>
+
+        <nav class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="index.html#collections">Collections</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="#">Contact</a>
+        </nav>
+
+        <div class="floating-cart" onclick="window.location.href='cart.html'" style="cursor:pointer">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <div class="cart-page">
+        <h1>Your Cart</h1>
+        <p class="cart-subtitle" id="cart-subtitle"></p>
+
+        <!-- Empty state -->
+        <div class="cart-empty" id="cart-empty">
+            <div class="empty-icon">👟</div>
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added any sneakers yet.</p>
+            <a href="index.html">Continue Shopping</a>
+        </div>
+
+        <!-- Cart content -->
+        <div class="cart-layout" id="cart-layout">
+            <div class="cart-items-list" id="cart-items-list"></div>
+
+            <div class="order-summary" id="order-summary">
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal (<span id="summary-count">0</span> items)</span>
+                    <span id="summary-subtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span style="color:#7CFFB2">FREE</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="summary-total">₹0</span>
+                </div>
+
+                <a id="whatsapp-checkout" href="#" class="whatsapp-checkout-btn" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Order via WhatsApp
+                </a>
+
+                <a href="index.html" class="continue-btn">← Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h2 class="logo">Claxxic India</h2>
+                <p>Quality sneakers delivered worldwide.</p>
+            </div>
+            <div>
+                <h3>Support</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Refund Policy</a>
+                <a href="#">Shipping</a>
+            </div>
+            <div>
+                <h3>Newsletter</h3>
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <p class="copyright">© 2026 Claxxic India</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

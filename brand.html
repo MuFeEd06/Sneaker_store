@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Brand - Claxxic India</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .brand-hero {
+            padding: 60px 5% 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+        }
+
+        .brand-hero-monogram {
+            width: 90px;
+            height: 90px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #000;
+            flex-shrink: 0;
+            letter-spacing: -1px;
+        }
+
+        .brand-hero-info h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .brand-hero-info p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .brand-hero-info .count {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 24px 5% 0;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover { color: var(--primary); }
+        .back-btn svg { width: 16px; height: 16px; }
+
+        .brand-products-section {
+            padding: 10px 5% 80px;
+        }
+
+        .brand-products-section .section-title {
+            margin: 30px 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/918606466821" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="logo/whatsapp.png" alt="WhatsApp">
+    </a>
+
+    <header>
+        <div class="logo-container">
+            <h1 class="logo">Claxxic India</h1>
+            <img src="logo/logo.png" alt="Sneaker Logo">
+        </div>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span><span></span><span></span>
+        </label>
+
+        <nav class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="index.html#collections">Collections</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="#">Contact</a>
+        </nav>
+
+        <div class="floating-cart">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <a href="index.html#collections" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Brands
+    </a>
+
+    <div class="brand-hero">
+        <div class="brand-hero-monogram" id="brand-monogram"></div>
+        <div class="brand-hero-info">
+            <h1 id="brand-title"></h1>
+            <p><span class="count" id="brand-count"></span> styles available</p>
+        </div>
+    </div>
+
+    <section class="brand-products-section">
+        <h2 class="section-title" id="brand-section-title"></h2>
+        <div class="product-grid" id="brand-product-grid"></div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h2 class="logo">Claxxic India</h2>
+                <p>Quality sneakers delivered worldwide.</p>
+            </div>
+            <div>
+                <h3>Support</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Refund Policy</a>
+                <a href="#">Shipping</a>
+            </div>
+            <div>
+                <h3>Newsletter</h3>
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <p class="copyright">© 2026 Claxxic India</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
